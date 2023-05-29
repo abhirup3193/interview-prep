@@ -57,3 +57,19 @@ class Solution:
             else:
                 j -= 1
 ```                
+# Using Dictonary Method 
+
+Dictonary Stores Key and Value
+ dict = {}
+
+```python 3.0
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dict = {}
+        for i in range (0, len(nums)):
+            complement = target - nums[i]
+            if complement in dict:
+                return [i, dict[complement]]
+            # put the value in dictionary
+            dict[nums[i]] = i
+```            
