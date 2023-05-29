@@ -51,10 +51,11 @@
 	Enable ACID properties
 
 >> ACID Properties -
-	+ **Atomicity** - either the entire transaction takes place at once or doesn’t happen at all.
-	+ **Consistancy** - integrity constraints must be maintained so that the database is consistent before and after the transaction
-	+ **Isolation** - Transactions occur independently without interference.
-	+ **Durabality**- once the transaction has completed execution, transactions are permanenet even for system failures
+
++ **Atomicity** - either the entire transaction takes place at once or doesn’t happen at all.
++ **Consistancy** - integrity constraints must be maintained so that the database is consistent before and after the transaction
++ **Isolation** - Transactions occur independently without interference.
++ **Durabality**- once the transaction has completed execution, transactions are permanenet even for system failures
 
 >> Parameters in ADF:
 	Parameters are basically used to make the ADF components dynamic rather than static. 
