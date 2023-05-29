@@ -38,17 +38,17 @@
 
 >> Types of file formats in Azure
 
-	- **Avro:** Row Based
-		Good for Transactional Work Loads
+- **Avro:** Row Based
+	Good for Transactional Work Loads
 
-	- **Parquet:** Coulmn Based
-		 Good for Read Intensive Jobs like Analytical Workloads, Query Only Subset of a column,
-		 Query Optimization Features
+- **Parquet:** Coulmn Based
+	 Good for Read Intensive Jobs like Analytical Workloads, Query Only Subset of a column,
+	 Query Optimization Features
 
-	- **ORC(**Optimized Row Columnar**):** Similar to Parquet
-		Works well with analytical worklaods
-		Hive Competable
-		Enable ACID properties
+- **ORC(**Optimized Row Columnar**):** Similar to Parquet
+	Works well with analytical worklaods
+	Hive Competable
+	Enable ACID properties
 
 	+ **Atomicity** - either the entire transaction takes place at once or doesn’t happen at all.
 	+ **Consistancy** - integrity constraints must be maintained so that the database is consistent before and after the transaction
