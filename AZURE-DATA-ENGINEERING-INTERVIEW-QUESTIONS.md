@@ -32,9 +32,9 @@
 
 >> Differnet type of Triggers in ADF 
 
-	Event Based
-	Scheduled 
-	Tumbling Window
++ Event Based
++ Scheduled 
++ Tumbling Window
 
 >> Types of file formats in Azure
 
@@ -50,47 +50,11 @@
 	Hive Competable
 	Enable ACID properties
 
+>> ACID Properties -
 	+ **Atomicity** - either the entire transaction takes place at once or doesn’t happen at all.
 	+ **Consistancy** - integrity constraints must be maintained so that the database is consistent before and after the transaction
 	+ **Isolation** - Transactions occur independently without interference.
 	+ **Durabality**- once the transaction has completed execution, transactions are permanenet even for system failures
-
-
->> RDD vs DF - Which is Better and Why ?
-
-	RDD - Collection of partitioned Data, No Built-in optimizer
-	DF - Catalyst Optimizer. 
-
->> Onprem to Cloud data migration / ETL Components -
-	
-		Self-Hosted Integration Runtime
-		Create Linked Services
-		Create Copy- Activity
-		Create a DataBricks Notebook for Data Transformation
-		Output Data as Prquet Format and store it to Delta Table / 
-			SQL Warehouse for BI Input
-
-	
-
->> Security aspects of Azure Data Pipelines 
-		
-		Azure AD
-		Key Vault for Storing Database or Other credentials
-		Self hosted services , self hosted integration runtime
-		encrypted file formats like AVRO or Parquet
-
->> Git
-
->> 	SCD 1: Data is overwritten, no History is Maintained
-	SCD 2: History is Maintained in Differnet Rows , isActive = True / False, Using Version Number, Date Range
-	SCD 3: Pirtial History is Maintained in an additaonal Column instead of an entire Row
-	SCD 6: SCD1 + SCD2 + SCD3
-			Additional Row with - isActive = True / False, Using Version Number, Date Range
-
->> Difference between WHERE and HAVING
-
-	WHERE is Filtering Data from a Table query
-	HAVING is Filtering Data from a Group / Group BY activity
 
 >> Parameters in ADF:
 	Parameters are basically used to make the ADF components dynamic rather than static. 
@@ -99,10 +63,47 @@
 		2. Dataset Parameters
 		3. Pipeline Parameters
 		4. Global Parameters
+		
+>> RDD vs DF - Which is Better and Why ?
 
->> How to protect PII data during ingesion from on-prem to cloud usning Azure Data Engineering 
++ **RDD** - Collection of partitioned Data, No Built-in optimizer
++ **DF** - Catalyst Optimizer. 
 
-	To protect personally identifiable information (PII) data during ingestion from on-premises to the cloud using Azure Data Engineering, you can follow these best practices:
+>> Onprem to Cloud data migration / ETL Components -
+	
+1. Self-Hosted Integration Runtime
+2. Create Linked Services
+3. Create Copy- Activity
+4. Create a DataBricks Notebook for Data Transformation
+5. Output Data as Prquet Format and store it to Delta Table / 
+6. SQL Warehouse for BI Input
+
+>> Security aspects of Azure Data Pipelines 
+		
++ Azure AD
++ Key Vault for Storing Database or Other credentials
++ Self hosted services , self hosted integration runtime
++ encrypted file formats like AVRO or Parquet
+
+>> Git
+
+>> Types of SCD (Slowly Changing Dimentions)	
++ **SCD 1:** Data is overwritten, no History is Maintained
++ **SCD 2:** History is Maintained in Differnet Rows , isActive = True / False, Using Version Number, Date Range
++ **SCD 3:** Pirtial History is Maintained in an additaonal Column instead of an entire Row
++ **SCD 6:** SCD1 + SCD2 + SCD3
+	Additional Row with - isActive = True / False, Using Version Number, Date Range
+
+>> Difference between WHERE and HAVING
+
+	WHERE is Filtering Data from a Table query
+	HAVING is Filtering Data from a Group / Group BY activity
+
+
+>> How to protect PII data during ingesion from on-prem to cloud using Azure Data Engineering 
+
+	To protect personally identifiable information (PII) data during ingestion from on-premises to the cloud using Azure Data Engineering, 
+	you can follow these best practices:
 
 	1. Data Encryption
 	2. Network Security (VPN) 
