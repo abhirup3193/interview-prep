@@ -1,4 +1,4 @@
->> **Project Description -**
+# Project Description -
 
 	1. Data is being dumped into ADSL Blob
 	2. Created two folders 
@@ -17,11 +17,14 @@
 						Dump the csv into processed folder
 
 
-					
+
+# Azure Data Factory (ADF) Questions -
 
 >> What is Integration Runtime in ADF ?
 
-	An integration runtime provides the bridge between activities and linked services. It's referenced by the linked service or activity, and provides the compute environment where the activity is either run directly or dispatched.
+	An integration runtime provides the bridge between activities and linked services. 
+	It's referenced by the linked service or activity, and provides the compute environment 
+	where the activity is either run directly or dispatched.
 
 	1. AZURE Integration Runtime
 	2. Self-Hosted Integration Runtime
@@ -35,22 +38,22 @@
 
 >> Types of file formats in Azure
 
-	Avro: 	Row Based
-			Good for Transactional Work Loads
+	- **Avro:** Row Based
+		Good for Transactional Work Loads
 
-	Parquet: Coulmn Based
-			 Good for Read Intensive Jobs like Analytical Workloads, Query Only Subset of a column,
-			 Query Optimization Features
+	- **Parquet:** Coulmn Based
+		 Good for Read Intensive Jobs like Analytical Workloads, Query Only Subset of a column,
+		 Query Optimization Features
 
-	ORC(Optimized Row Columnar): Similar to Parquet
-								 Works well with analytical worklaods
-								 Hive Competable
-								 Enable ACID properties
+	- **ORC(**Optimized Row Columnar**):** Similar to Parquet
+		Works well with analytical worklaods
+		Hive Competable
+		Enable ACID properties
 
-	Atomicity - either the entire transaction takes place at once or doesn’t happen at all.
-	Consistancy - integrity constraints must be maintained so that the database is consistent before and after the transaction
-	Isolation - Transactions occur independently without interference.
-	Durabality- once the transaction has completed execution, transactions are permanenet even for system failures
+	+ **Atomicity** - either the entire transaction takes place at once or doesn’t happen at all.
+	+ **Consistancy** - integrity constraints must be maintained so that the database is consistent before and after the transaction
+	+ **Isolation** - Transactions occur independently without interference.
+	+ **Durabality**- once the transaction has completed execution, transactions are permanenet even for system failures
 
 
 >> RDD vs DF - Which is Better and Why ?
