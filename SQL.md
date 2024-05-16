@@ -43,6 +43,24 @@ FROM salaries
 WHERE employee_id NOT IN (SELECT employee_id FROM employees)
 ORDER BY employee_id;
 ```
+# 1661. Average Time of Process per Machine
 
+```SQL
+WITH cte AS (
+    SELECT a.machine_id, a.process_id, a.timestamp AS start_timestamp, 
+           (SELECT b.timestamp FROM Activity b 
+            WHERE b.activity_type = 'end' 
+              AND b.machine_id = a.machine_id 
+              AND b.process_id = a.process_id) AS end_timestamp
+    FROM Activity a 
+    WHERE a.activity_type = 'start'
+)
+
+SELECT machine_id, ROUND(AVG(end_timestamp - start_timestamp), 3) AS processing_time
+FROM cte
+GROUP BY machine_id
+ORDER BY machine_id;
+
+```
 
 
