@@ -62,5 +62,15 @@ GROUP BY machine_id
 ORDER BY machine_id;
 
 ```
-
-
+# 570. Managers with at Least 5 Direct Reports
+```SQL
+SELECT name
+FROM (
+    SELECT e1.name, count(e1.id) AS reportees FROM Employee e1
+    JOIN Employee e2 
+    WHERE e1.id = e2.managerId
+    GROUP BY e2.managerId
+) t1
+WHERE reportees >= 5
+```
+# 
