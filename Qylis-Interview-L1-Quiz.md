@@ -1,52 +1,52 @@
 1. Which of the following is NOT a valid method to persist data in a Spark DataFrame in PySpark?
 
-a. df.write.parquet("path/to/output")
-
-b. df.write.format("json").save("path/to/output")
-
-c. df.saveAsTable("table_name")
-
-d. df.writeText("path/to/output”)   `[Correct]`
+    a. df.write.parquet("path/to/output")
+    
+    b. df.write.format("json").save("path/to/output")
+    
+    c. df.saveAsTable("table_name")
+    
+    d. df.writeText("path/to/output”)   `[Correct]`
 
 2. In Apache Spark, which operation causes a shuffle?
 
-a. `filter`
-
-b. `map`
-
-c. `reduceByKey` [Correct]
-
-d. `flatMap`
+    a. `filter`
+    
+    b. `map`
+    
+    c. `reduceByKey` [Correct]
+    
+    d. `flatMap`
 
 3.  When working with Kafka in a Databricks notebook, which library is primarily used to read data from Kafka?
 
-a. `pyspark.streaming`
-
-b. `pyspark.sql.kafka` [Correct]
-
-c. `pyspark.sql.streaming`
-
-d. `pyspark.kafka`
+    a. `pyspark.streaming`
+    
+    b. `pyspark.sql.kafka` [Correct]
+    
+    c. `pyspark.sql.streaming`
+    
+    d. `pyspark.kafka`
 
 4. How do you broadcast a small DataFrame to all worker nodes in PySpark?
 
-a. `df.broadcast()`
-
-b. `broadcast(df)` [Correct]
-
-c. `spark.broadcast(df)`
-
-d. `df.broadcast().to_nodes()`
+    a. `df.broadcast()`
+    
+    b. `broadcast(df)` [Correct]
+    
+    c. `spark.broadcast(df)`
+    
+    d. `df.broadcast().to_nodes()`
 
 5.  In Azure Data Lake Storage (ADLS), which of the following is a common way to authenticate and authorize access?
 
-a. Access Control Lists (ACLs) [Correct]
-
-b. Public-private key pairs
-
-c. Username and password
-
-d. API tokens
+    a. Access Control Lists (ACLs) [Correct]
+    
+    b. Public-private key pairs
+    
+    c. Username and password
+    
+    d. API tokens
 
 6. Which of the following is the correct way to start a structured streaming query in Spark to read from Kafka?
 
