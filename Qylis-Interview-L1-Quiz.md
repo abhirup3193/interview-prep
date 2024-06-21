@@ -1,4 +1,4 @@
-1. Which of the following is NOT a valid method to persist data in a Spark DataFrame in PySpark?
+`1. Which of the following is NOT a valid method to persist data in a Spark DataFrame in PySpark?
 
 a. `df.write.parquet("path/to/output")`
 
@@ -6,7 +6,7 @@ b. `df.write.format("json").save("path/to/output")`
 
 c. `df.saveAsTable("table_name")`
 
-d. `df.writeText("path/to/output”)`   [Correct]
+d. `df.writeText("path/to/output”)`   [Correct]`
 
 2. In Apache Spark, which operation causes a shuffle?
 
