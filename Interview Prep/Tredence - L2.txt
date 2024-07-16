@@ -1,0 +1,96 @@
+words_list = 
+["hello", "Tredence", "questions", "world", "tredence inc"]
+I want to print the only the words with Tredence.
+
+
+Def matchRecords(lst):
+	matchedRecords = []
+	for item in lst:
+		if item.lower() = regexp("%tredence%"):
+			matchedRecords.apped(item)
+	return matchedRecords
+
+print(matchRecords(records))
+
+
+Input				
+--------------------------				
+Salary Table			Employee Table	
+Emp_ID	Salary		Emp_ID	Name
+1	80		1	ABC
+2	40		2	XYZ
+3	70		3	EFD
+4	100		4	GHR
+5	80		5	IJK
+6	70		6	POL
+7	90		7	WED
+q: In the output table we need to store the EMP_ID, Name and Salary for the employee having the 3rd highest salary. Write a SQL query/ Pyspark code to get the desired output					
+WITH cte AS(
+SELECT e.Emp_ID, e.Name, s.Salary, DENSE_RANK() OVER(ORDER BY salary DESC) as rn
+FROM(
+
+	SELECT * FROM Employee e
+	JOIN Salary s ON e. Emp_ID = s. Emp_ID
+)
+)
+
+SELECT Emp_ID, Name, Salary
+FROM ate
+WHERE rn = 3
+	
+
+Ink
+
+1 	1
+1	1
+3 	2
+4	3
+4	3
+6	4
+
+
+nput					
+--------------------------					
+Sales Table				Cust Table	
+Date	 Cust_ID	Sales		Cust_ID	Name
+5/1/2024	1	80		1	ABC
+5/1/2024	2	40		2	XYZ
+6/2/2024	1	70			
+6/2/2024	2	50			
+7/3/2024	1	60			
+7/3/2024	2	50			
+8/1/2024	1	80			
+8/1/2024	2	40			
+9/2/2024	1	70			
+9/2/2024	2	50			
+10/3/2024	1	60			
+10/3/2024	2	50			
+Output					
+-----------------------------					
+Month_NoCust_ID	Cust_Name	Cumulative Sales		
+5	1	ABC	80		
+6	1	ABC	150		
+7	1	ABC	210		
+8	1	ABC	290		
+5	2	XYZ	40		
+6	2	XYZ	90		
+7	2	XYZ	140		
+8	2	XYZ	180		
+q: In the output table we need month no, custo_id, cust_name and the cumulative sum of sales for each month per customer.
+Write a SQL query/ Pyspark code to get the desired output				
+has context menu
+
+
+WITH cte AS( 
+SELECT date_format(Date, "%m") as Month_No, Cust_id, Name, Sales
+SELECT c.Cust_ID, c.Name, s.Sales, s.Date
+FROM Cust c
+JOIN Sales s ON c.Cust_id = s.Cust_id
+)
+
+SELECT *, 
+
+
+
+		
+		

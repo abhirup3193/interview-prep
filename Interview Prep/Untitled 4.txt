@@ -1,0 +1,96 @@
+
+
+Books
++-----+-------------+-------+
+| ISBN | Title | Year |
++-----+-------------+-------+
+| 123 | "Book A" | 2019 |
+| 456 | "Book B" | 2020 |
+| 789 | "Book C" | 2021 |
++-----+-------------+-------+
+Authors
++-----+---------+
+| ISBN | Author |
++-----+---------+
+| 123 | "Author X" |
+| 123 | "Author Y" |
+| 456 | "Author Z" |
+| 789 | "Author X" |
++-----+---------+
+Write an SQL query to find the authors who have written books in multiple years. Display the author name and the number of different years they have written books.
+
+
+WITH cte AS (
+SELECT *, COUNT(*) as cnt
+FROM (
+SELECT b.ISBN, a.Author, b.Title, b.Year 
+FROM Books b JOIN Authors a ON b. ISBN = a.ISBN
+)
+PARTITION BY Author
+GROUP BY Books, Year
+WHERE cnt > 1
+)
+
+SELECT Authors, cnt FROM cte
+
+
+============================
+
+Customer: customer_id, first_name, last_name, and email.
+orders: order_id, customer_id, order_date, and total_amount
+products: product_id, product_name, price, and category_id.
+order_items: order_id, product_id, and quantity.
+
+Write an SQL query to find the top 5 customers who spent the most on their orders in the last month, along with their total spending. The query should return the customer's first_name, last_name, and the total amount spent in the last month. Assume the current date is October 1, 2023.
+
+Hint: You'll need to use various SQL clauses, such as SELECT, JOIN, WHERE, GROUP BY, and ORDER BY, to solve this problem.
+
+
+WITH cte AS(
+SELECT c.customer_id, o.quantity, p.price, (o.quantity * p.price) AS spent_amount
+FROM(
+SELECT * FROM order_items ot
+JOIN products p ON ot.product_id = p.product_id
+JOIN orders o ON ot. order_id = o. order_id
+JOIN Customer c ON c.customer_id = o.customer_id
+)
+
+SELECT *, DENSE_RANK() OVER(ORDER BY spent_amount DESC) as rank
+FROM cte
+WHERE rank <= 5
+GROUP BY customer_id, quantity, price
+
+1%2 = 0
+2%2 = 1
+3
+4
+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

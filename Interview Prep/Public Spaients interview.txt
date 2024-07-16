@@ -1,0 +1,142 @@
+Given below is the stock data set which shows stock and its predicted price over next 7 working days/sessions
+ 
+As a end user I want to know what should be my buy price and what should be my sell price for each share
+so that i can earn maximum profit.
+ 
+e.g.
+For RIL, I buy it on first session and sell it on 4th session i will get 310 profit.
+ 
+input
+StockId, PredictedPrice
+RIL,[1000, 1005,1090,1200,1000,900,890]
+HDFC,[890,940,810,730,735,960,980]
+INFY,[1001,902,1000,990,1230,1100,1200]
+ 
+Output
+StockId|BuyPrice|SellPrice|Profit
+RIL|890|1200|310
+HDFC|730|980|250
+INFY|902|1230|328
+has context menu
+
+
+Df = spark.read.csv("path/to/csv/file.csv")
+
+Df = df.select("StockId", explode("PredictedPrice"))
+
+Df1 = Df.groupBy("StockId").agg(max(col("PredictedPrice")).alias("SellPrice"),
+					min(col("PredictedPrice").alias("BuyPrice))
+Df2 = df1.withColumn("profit", (col("SellPrice")-col("BuyPrice"))).select("StockId", "
+
+display(Df2)
+
+====================================
+from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+from pyspark.sql.window import Window
+from pyspark.sql.types import StructType, StructField, StringType, ArrayType, IntegerType
+
+# Initialize Spark session
+spark = SparkSession.builder.appName("StockProfit").getOrCreate()
+
+# Define the input data
+data = [
+    ('RIL', [1000, 1005, 1090, 1200, 1000, 900, 890]),
+    ('HDFC', [890, 940, 810, 730, 735, 960, 980]),
+    ('INFY', [1001, 902, 1000, 990, 1230, 1100, 1200])
+]
+
+# Define schema for the DataFrame
+schema = StructType([
+    StructField("StockId", StringType(), True),
+    StructField("PredictedPrice", ArrayType(IntegerType()), True)
+])
+
+# Create DataFrame
+df = spark.createDataFrame(data, schema=schema)
+
+# Explode the array column to have one row per predicted price
+df = df.withColumn("PredictedPrice", F.explode("PredictedPrice"))
+
+# Define window specification by StockId for finding BuyPrice and Profit
+window_spec = Window.partitionBy("StockId").orderBy("PredictedPrice")
+
+# Calculate BuyPrice (minimum predicted price) and Profit (maximum profit)
+df = df.withColumn("BuyPrice", F.min("PredictedPrice").over(window_spec)) \
+       .withColumn("Profit", F.max("PredictedPrice").over(window_spec) - F.col("BuyPrice"))
+
+# Find the SellPrice corresponding to the maximum Profit
+max_profit_window = Window.partitionBy("StockId").orderBy(F.col("Profit").desc())
+df = df.withColumn("max_profit", F.max("Profit").over(max_profit_window))
+df = df.filter((F.col("Profit") == F.col("max_profit"))).drop("max_profit")
+
+# Define window specification for finding SellPrice
+sell_window_spec = Window.partitionBy("StockId").orderBy(F.col("PredictedPrice").desc())
+
+# Join with itself to find SellPrice corresponding to the maximum Profit
+df = df.join(
+    df.withColumn("SellPrice", F.first("PredictedPrice").over(sell_window_spec)),
+    on=["StockId"],
+    how="inner"
+).select(
+    "StockId", "BuyPrice", "SellPrice", "Profit"
+).distinct()
+
+# Show the final result
+df.show()
+
+====================================
+
+
+List =  [1000, 1005,1090,1200,1000,900,890]
+sorted_list = []
+For i in range(len(list)):
+	if list[I] > list[I+1]:
+		sorted_list.append(list[I])
+
+Table
+empid name managerID
+101  abc    102
+102  john   107
+103  def    101
+104  jon    101
+105  xyz    101
+106  abd    101
+
+
+WiTH CTE AS (
+SELECT empid, managerID , manager_name
+FROM 
+(
+
+	SELECT t1.* , t2.name AS manager_name
+	FROM table t1
+	JOIN table t2
+	ON t1. empid = t2.managerID
+) t
+WHERE count(empid) > 4
+GROUP BY managerID
+)
+
+SELECT manager_name
+FROM CTE
+
+A	1
+A	1
+B	3
+C	4
+C	4
+D	6
+
+
+A	1
+A	1
+B	2
+C	3
+C	3
+D	4
+
+
+
+
+
